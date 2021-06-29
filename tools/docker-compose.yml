@@ -1,0 +1,10 @@
+version: '3.5'
+services:
+#Services
+ kali:
+  build:
+    context: build
+    args:
+     ENVPATH: kali.env
+  hostname: kali
+  privileged: true
