@@ -25,6 +25,8 @@ La imagen contiene los paquetes kali:
 
 * **kali-tools-top10**
 * **kali-tools-sniffing-spoofing**
+* **kali-tools-passwords**
+* **kali-tools-vulnerability**
 * **kali-desktop-xfce**: Entorno de escritorio xcfe para Kali
 
 Accederemos al container a través de un cliente RDP, como Remmina, con la cualquier IP correspondiente al container. Para conocer la IP del container podemos ejecutar dentro de él:
