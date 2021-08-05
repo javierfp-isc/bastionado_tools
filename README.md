@@ -66,7 +66,7 @@ Dentro del mismo podemos utilizar todas las herramientas disponibles en los paqu
 
 Aunque el container no dispone de entorno de escritorio es posible lanzar aplicaciones gráficas para que éstas se rendericen en el host. Simplemente lanzando la aplicación en segundo plano:
 
-`wirehsark &`
+`wireshark &`
 
 Para que las aplicaciones gráficas puedan ser ejecutadas desde root dentro del container hay que ejecutar en el host, con el usuario del escritorio:
 
