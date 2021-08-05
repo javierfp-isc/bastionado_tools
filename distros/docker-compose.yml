@@ -6,5 +6,10 @@ services:
     context: build
     args:
      ENVPATH: kali.env
+  environment:
+   - DISPLAY=${DISPLAY}
   hostname: kali
   privileged: true
+  volumes:
+   - /tmp/.X11-unix:/tmp/.X11-unix
+  network_mode: host

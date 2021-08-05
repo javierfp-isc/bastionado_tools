@@ -1,36 +1,63 @@
 # bastionado tools
-Repositorio con herramientas para el módulo
 
-## Kali
+Repositorio con herramientas para el módulo. Consta de varios escenarios de despliegue:
 
-### Creación de la imagen
+* **distros**: Distribuciones de herramientas. En este caso **Kali Linux**
 
-Dentro del directorio tools ejecutamos:
+## Escenario distros
 
-`docker-compose build`
+Dentro de ese directorio encontramos un escenario de despliegue de la herramienta Kali Linux
 
-### Lanzamiento del container
+### Creación de la imagen y lanzamiento del container
 
-`docker run -d --name kali --network host --privileged=true tools_kali`
+Ejecutamos:
 
-El container generado, de nombre **kali**, está conectado a la red host, por tanto tiene acceso a todos los bridges del host.
+`docker-compose up -d`
 
-### Acceso al container desde línea de comandos
+El comando anterior:
 
-`docker exec -it kali bash`
+* Crea la imagen **distros_kali**
+* Levanta el service docker-compose **kali** que corresponde con el docker container de nombre **distros_kali_1**
+
+El service definido en **docker-compose.yml** posee las siguientes características:
+
+* **Está conectado a todas las redes del host**, por tanto será muy útil para auditar y trabajar en cualquier red accesible desde el host, en particular todas las networks creadas en los distintos escenarios de prácticas.
+* Permite **ejecutar aplicaciones gráficas que se visualizarán en el motor de ventanas del host**
 
 ### Comentarios sobre la imagen
 
-La imagen contiene los paquetes kali:
+La imagen contiene los **metapaquetes** kali:
 
 * **kali-tools-top10**
 * **kali-tools-sniffing-spoofing**
 * **kali-tools-passwords**
 * **kali-tools-vulnerability**
-* **kali-desktop-xfce**: Entorno de escritorio xcfe para Kali
 
-Accederemos al container a través de un cliente RDP, como Remmina, con la cualquier IP correspondiente al container. Para conocer la IP del container podemos ejecutar dentro de él:
+### Acceso al container desde línea de comandos
 
-`ip addr`
+De cualquiera de los siguientes modos:
 
-Por defecto se configura la **distribución del teclado en español** al iniciar sesión. Hay que salir siempre del container cerrando sesión (log out) o parando el container para evitar que esta configuración se pierda
+* Mediante docker-compose, desde el directorio del escenario (distros):
+
+`docker-compose exec kali bash`
+
+* Mediante docker CLI con el comando:
+
+`docker exec -it distros_kali_1 bash`
+
+Dentro del mismo podemos utilizar todas las herramientas disponibles en los paquetes de la lista anterior, si necesitamos instalar algún metapaquete adicional lo instalamos con **apt install**. La lista completa de metapaquetes la obtendremos de:
+
+[Metapaquetes Kali](https://www.kali.org/docs/general-use/metapackages/)
+
+### Lanzamiento de aplicaciones gráficas
+
+Aunque el container no dispone de entorno de escritorio es posible lanzar aplicaciones gráficas para que éstas se rendericen en el host. Simplemente lanzando la aplicación en segundo plano:
+
+`wirehsark &`
+
+Para que las aplicaciones gráficas puedan ser ejecutadas desde root dentro del container hay que ejecutar en el host, con el usuario del escritorio:
+
+`xhost si:localuser:root`
+
+Una vez ejecutado el comando anterior ya podremos ejecutar las aplicaciones gráficas dentro del container, las cuales usarán la pantalla asociada al escritorio del host.
+

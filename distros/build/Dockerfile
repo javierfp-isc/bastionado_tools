@@ -1,9 +1,9 @@
-FROM debian:buster
+FROM kalilinux/kali-rolling
 
-ENV TERM xterm
-ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+#ENV TERM xterm
+#ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-LABEL distribucion="Debian 10"
+LABEL distribucion="Kali Linux Rolling"
 LABEL maintainer=javierfp@iessanclemente.net
 
 #Argumento tomado del docker-compose.yml para seleccionar el archivo .env->envfile
