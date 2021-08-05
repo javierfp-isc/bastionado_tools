@@ -4,6 +4,19 @@ Repositorio con herramientas para el módulo. Consta de varios escenarios de des
 
 * **distros**: Distribuciones de herramientas. En este caso **Kali Linux**
 
+## Requisitos
+
+Para ejecutar los escenarios descritos a continuación debemos de disponer:
+
+* **Host Debian Buster**
+* **Git**
+* **Docker engine**
+* **Herramienta docker-compose**
+
+En el siguiente enlace se ofrece información sobre cómo realizar la instalación y el despliegue de las mismas:
+
+[Requisitos](https://github.com/javierfp-isc/sxe_requisitos/blob/master/REQUISITOS.md)
+
 ## Escenario distros
 
 Dentro de ese directorio encontramos un escenario de despliegue de la herramienta Kali Linux
