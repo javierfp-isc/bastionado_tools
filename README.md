@@ -74,3 +74,8 @@ Para que las aplicaciones gráficas puedan ser ejecutadas desde root dentro del 
 
 Una vez ejecutado el comando anterior ya podremos ejecutar las aplicaciones gráficas dentro del container, las cuales usarán la pantalla asociada al escritorio del host.
 
+El comando xhost solo afecta a la sesión en la que se ejecuta, para poder hacer persistente su efecto añadimos la siguiente línea al principio del archivo **~/.bashrc** en la sesión de nuestro usuario:
+
+`xhost si:localuser:root > /dev/null`
+
+
