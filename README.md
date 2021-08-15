@@ -67,13 +67,17 @@ Dentro del mismo podemos utilizar todas las herramientas disponibles en los paqu
 
 Aunque el container no dispone de entorno de escritorio es posible lanzar aplicaciones gráficas para que éstas se rendericen en el host. Simplemente lanzando la aplicación en segundo plano:
 
-`wirehsark &`
+`wireshark &`
 
 Para que las aplicaciones gráficas puedan ser ejecutadas desde root dentro del container hay que ejecutar en el host, con el usuario del escritorio:
 
 `xhost si:localuser:root`
 
 Una vez ejecutado el comando anterior ya podremos ejecutar las aplicaciones gráficas dentro del container, las cuales usarán la pantalla asociada al escritorio del host.
+
+El comando xhost solo afecta a la sesión en la que se ejecuta, para poder hacer persistente su efecto añadimos la siguiente línea al principio del archivo **~/.bashrc** en la sesión de nuestro usuario:
+
+`xhost si:localuser:root > /dev/null`
 
 ## Escenario testers
 
@@ -114,11 +118,4 @@ y ejecutamos:
 Otra opción es asignar la IP manualmente en el archivo **/etc/network/interfaces**
 
 Con la IP elegida vamos a un cliente de escritorio para el protocolo RDP, como por ejemplo Remmina, y nos conectamos a través de ese protocolo con el usuario: **tester** password: **abc123.**
-
-
-
-
-
-
-
 
