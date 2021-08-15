@@ -3,6 +3,7 @@
 Repositorio con herramientas para el módulo. Consta de varios escenarios de despliegue:
 
 * **distros**: Distribuciones de herramientas. En este caso **Kali Linux**
+* **testers**: Testeadores para realización de pruebas
 
 ## Requisitos
 
@@ -73,4 +74,51 @@ Para que las aplicaciones gráficas puedan ser ejecutadas desde root dentro del 
 `xhost si:localuser:root`
 
 Una vez ejecutado el comando anterior ya podremos ejecutar las aplicaciones gráficas dentro del container, las cuales usarán la pantalla asociada al escritorio del host.
+
+## Escenario testers
+
+Dentro de ese directorio encontramos un escenario de despliegue de containers para realización de pruebas
+
+### Creación de la imagen
+
+Ejecutamos:
+
+`docker-compose build`
+
+El comando anterior crea la imagen **testers_lxde**. Esta imagen:
+
+* Es una imagen para crear containers basados en **Debian con escritorio LXDE**
+* Dispone del usuario **tester (abc123.)** para realizar pruebas desde un entorno de escritorio LXDE
+* Tiene instalado un **servidor RDP ,xrdp,** para acceder al escritorio a través de herramientas de acceso remoto, como Remmina.
+
+Será la base de partida para la creación de containers utilizados para realizar pruebas.
+
+### Lanzamiento de container basado en la imagen
+
+Una vez creada la imagen creamos un container:
+
+`docker run -d --name lxde_tester --network=host testers_lxde`
+
+Con el comando anterior el container se conectará al entorno de red del host pero puede ser útil cambiar el parámetro network para que el container se conecte a la red indicada. Por ejemplo para conectar la red a la network perimetral_sat:
+
+`docker run -d --name lxde_tester --network=perimetral_sat testers_lxde`
+
+Una vez creado el container determinamos su dirección IP, para ello accedemos al mismo:
+
+`docker exec -it lxde_tester bash`
+
+y ejecutamos:
+
+`ip addr`
+
+Otra opción es asignar la IP manualmente en el archivo **/etc/network/interfaces**
+
+Con la IP elegida vamos a un cliente de escritorio para el protocolo RDP, como por ejemplo Remmina, y nos conectamos a través de ese protocolo con el usuario: **tester** password: **abc123.**
+
+
+
+
+
+
+
 
