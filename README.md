@@ -101,15 +101,15 @@ Será la base de partida para la creación de containers utilizados para realiza
 
 Una vez creada la imagen creamos un container:
 
-`docker run -d --name lxde_tester --privileged --network=host --hostname=tester testers_lxde`
+`docker run -d --name tester --privileged --network=host --hostname=tester testers_lxde`
 
 Con el comando anterior el container se conectará al entorno de red del host pero puede ser útil cambiar el parámetro network para que el container se conecte a la red indicada. Por ejemplo para conectar la red a la network perimetral_adm:
 
-`docker run -d --name lxde_tester --privileged --network=perimetral_adm --hostname=tester testers_lxde`
+`docker run -d --name tester --privileged --network=perimetral_adm --hostname=tester testers_lxde`
 
 Una vez creado el container determinamos su dirección IP, para ello accedemos al mismo:
 
-`docker exec -it lxde_tester bash`
+`docker exec -it tester bash`
 
 y ejecutamos:
 
