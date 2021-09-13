@@ -119,3 +119,7 @@ Otra opción es asignar la IP manualmente en el archivo **/etc/network/interface
 
 Con la IP elegida vamos a un cliente de escritorio para el protocolo RDP, como por ejemplo Remmina, y nos conectamos a través de ese protocolo con el usuario: **tester** password: **abc123.**
 
+Si es necesario cambiar la distribución del teclado para trabajar en el escritorio ejecutamos en una terminal del usuario tester:
+
+`setxkbmap es`
+
