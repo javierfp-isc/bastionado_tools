@@ -91,9 +91,10 @@ Ejecutamos:
 
 El comando anterior crea la imagen **testers_lxde**. Esta imagen:
 
+* La password de **root** es **abc123.**
 * Es una imagen para crear containers basados en **Debian con escritorio LXDE**
-* Dispone del usuario **tester (abc123.)** para realizar pruebas desde un entorno de escritorio LXDE
-* Tiene instalado un **servidor RDP ,xrdp,** para acceder al escritorio a través de herramientas de acceso remoto, como Remmina.
+* Dispone del usuario: **tester (abc123.)** para realizar pruebas en entorno de escritorio LXDE
+* Tiene instalado un **servidor RDP, xrdp,** para acceder al escritorio a través de herramientas de acceso remoto, como **Remmina**.
 
 Será la base de partida para la creación de containers utilizados para realizar pruebas.
 
@@ -119,7 +120,7 @@ Otra opción es asignar la IP manualmente en el archivo **/etc/network/interface
 
 Con la IP elegida vamos a un cliente de escritorio para el protocolo RDP, como por ejemplo Remmina, y nos conectamos a través de ese protocolo con el usuario: **tester** password: **abc123.**
 
-Si es necesario cambiar la distribución del teclado para trabajar en el escritorio ejecutamos en una terminal del usuario tester:
+Si es necesario cambiar la distribución del teclado para trabajar en el escritorio **ejecutamos en una terminal del usuario tester**:
 
 `setxkbmap es`
 
