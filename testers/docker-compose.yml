@@ -7,5 +7,11 @@ services:
     args:
      ENVPATH: lxde.env
   hostname: lxde
-  privileged: true
-  network_mode: host
+  environment:
+   - DISPLAY=${DISPLAY}
+  cap_add:
+   - ALL
+  volumes:
+   - /tmp/.X11-unix:/tmp/.X11-unix
+  #privileged: true
+  #network_mode: host

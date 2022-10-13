@@ -9,7 +9,8 @@ services:
   environment:
    - DISPLAY=${DISPLAY}
   hostname: kali
-  privileged: true
+  cap_add:
+   - ALL
   volumes:
    - /tmp/.X11-unix:/tmp/.X11-unix
-  network_mode: host
+  #network_mode: host
