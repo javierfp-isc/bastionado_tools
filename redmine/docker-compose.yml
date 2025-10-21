@@ -18,7 +18,7 @@ services:
     depends_on:
       - mariadb
     ports:
-      - "8080:3000"
+      - "80:3000"
     environment:
       REDMINE_DB_MYSQL: mariadb
       REDMINE_DB_DATABASE: redmine
