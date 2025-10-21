@@ -1,32 +1,39 @@
 services:
   mariadb:
-    image: docker.io/bitnami/mariadb:latest
-    volumes:
-      - 'mariadb_data:/bitnami/mariadb'
+    image: mariadb:11
+    container_name: mariadb
+    restart: always
     environment:
-      # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
-      - MARIADB_USER=bn_redmine
-      - MARIADB_DATABASE=bitnami_redmine
-  redmine:
-    image: docker.io/bitnami/redmine:latest
-    ports:
-      - '80:3000'
+      MYSQL_ROOT_PASSWORD: abc123.
+      MYSQL_DATABASE: redmine
+      MYSQL_USER: redmine
+      MYSQL_PASSWORD: abc123.
     volumes:
-      - 'redmine_data:/bitnami/redmine'
+      - mariadb_data:/var/lib/mysql
+
+  redmine:
+    image: redmine:6.1.0-bookworm
+    container_name: redmine
+    restart: always
     depends_on:
       - mariadb
+    ports:
+      - "8080:3000"
     environment:
-      # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
-      - REDMINE_DATABASE_HOST=mariadb
-      - REDMINE_DATABASE_PORT_NUMBER=3306
-      - REDMINE_DATABASE_USER=bn_redmine
-      - REDMINE_DATABASE_NAME=bitnami_redmine
-      - REDMINE_USERNAME=admin
-      - REDMINE_PASSWORD=admin
+      REDMINE_DB_MYSQL: mariadb
+      REDMINE_DB_DATABASE: redmine
+      REDMINE_DB_USERNAME: redmine
+      REDMINE_DB_PASSWORD: abc123.
+      REDMINE_DB_ENCODING: utf8mb4
+      # Opcional: si usas proxy inverso
+      # REDMINE_RELATIVE_URL_ROOT: /redmine
+    volumes:
+      - redmine_data:/usr/src/redmine/files
+      - redmine_plugins:/usr/src/redmine/plugins
+      - redmine_themes:/usr/src/redmine/public/themes
+
 volumes:
   mariadb_data:
-    driver: local
   redmine_data:
-    driver: local
+  redmine_plugins:
+  redmine_themes:
