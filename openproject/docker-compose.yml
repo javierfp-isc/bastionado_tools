@@ -1,0 +1,24 @@
+services:
+  openproject:
+    image: openproject/openproject:16
+    container_name: openproject
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      # URL pública de acceso (ajusta a tu dominio o IP)
+      OPENPROJECT_HOST__NAME: localhost
+      OPENPROJECT_HTTPS: "false"
+
+      # Configuración básica (ajusta según tu entorno)
+      OPENPROJECT_SECRET_KEY_BASE: abc123.
+
+      # Opcional: idioma y zona horaria
+      OPENPROJECT_DEFAULT__LANGUAGE: es
+      OPENPROJECT_DEFAULT__TIMEZONE: Europe/Madrid
+
+    volumes:
+      - openproject_data:/var/openproject
+
+volumes:
+  openproject_data:
